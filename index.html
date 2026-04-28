@@ -6,11 +6,7 @@
 <title>Michael Sepulveda</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
-  :root{
-    --bg:#0e0e0e;--bg2:#151515;--bg3:#1c1c1c;
-    --text:#f0ede8;--muted:#888;--accent:#c8b89a;--border:#2a2a2a;
-    --serif:'Georgia',serif;--sans:'Helvetica Neue','Arial',sans-serif;
-  }
+  :root{--bg:#0e0e0e;--bg2:#151515;--bg3:#1c1c1c;--text:#f0ede8;--muted:#888;--accent:#c8b89a;--border:#2a2a2a;--serif:'Georgia',serif;--sans:'Helvetica Neue','Arial',sans-serif;}
   html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;}
   nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(14,14,14,0.85);backdrop-filter:blur(8px);}
@@ -19,7 +15,6 @@
   nav a{color:var(--muted);text-decoration:none;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
   nav a:hover{color:var(--text);}
   .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding:8rem 3rem 4rem;gap:4rem;align-items:center;max-width:1200px;margin:0 auto;}
-  .hero-photo{position:relative;}
   .hero-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;filter:grayscale(20%);border-radius:4px;}
   .hero-eyebrow{font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s 0.3s forwards;}
   .hero-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,5rem);font-weight:400;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s 0.5s forwards;}
@@ -110,10 +105,22 @@
 
 <div class="metrics-bar">
   <div class="metrics-inner">
-    <div class="metric fade-in"><div class="metric-num">AUD 40K</div><div class="metric-label">Weekly revenue managed</div></div>
-    <div class="metric fade-in"><div class="metric-num">+20%</div><div class="metric-label">Order value uplift</div></div>
-    <div class="metric fade-in"><div class="metric-num">30M+</div><div class="metric-label">Customer records analysed</div></div>
-    <div class="metric fade-in"><div class="metric-num">70%</div><div class="metric-label">Clients via direct outreach</div></div>
+    <div class="metric fade-in">
+      <div class="metric-num" data-target="40000" data-prefix="AUD " data-suffix="K" data-divide="1000">0</div>
+      <div class="metric-label">Weekly revenue managed</div>
+    </div>
+    <div class="metric fade-in">
+      <div class="metric-num" data-target="20" data-prefix="+" data-suffix="%">0</div>
+      <div class="metric-label">Order value uplift</div>
+    </div>
+    <div class="metric fade-in">
+      <div class="metric-num" data-target="30" data-prefix="" data-suffix="M+">0</div>
+      <div class="metric-label">Customer records analysed</div>
+    </div>
+    <div class="metric fade-in">
+      <div class="metric-num" data-target="70" data-prefix="" data-suffix="%">0</div>
+      <div class="metric-label">Clients via direct outreach</div>
+    </div>
   </div>
 </div>
 
@@ -122,8 +129,8 @@
     <div class="two-col">
       <div class="fade-in">
         <div class="section-label">About</div>
-        <h2 class="section-title">Diagnose the need. Deliver the solution.</h2>
-        <p class="section-body">I built my commercial foundation over two years in hospitality operations in Brisbane: upselling, handling objections, closing group bookings, in my second language. Then I developed an analytical layer, mapping cross-sell cycles at Papernest, designing KPI frameworks for the OAS, and co-founding a consultancy where most clients came through direct outreach.</p>
+        <h2 class="section-title">Diagnose the need.<br>Deliver the solution.</h2>
+        <p class="section-body">I built my commercial foundation over two years in hospitality operations in Australia: upselling, handling objections, closing group bookings, in my second language. Then I developed an analytical layer, mapping cross-sell cycles at a PropTech scaleup in Barcelona, designing KPI frameworks for an international organisation in Washington D.C., and co-founding a consultancy in Colombia where most clients came through direct outreach.</p>
         <p class="section-body" style="margin-top:1rem;">The thread across all of it: the moment when you understand what someone actually needs, and you know you have the right solution. That is what I want to build on in B2B sales.</p>
       </div>
       <div class="fade-in">
@@ -149,7 +156,7 @@
         <div class="exp-num">01</div>
         <div>
           <div class="exp-role">Operations & Commercial Support</div>
-          <div class="exp-company">Wine Distribution & Retail SMEs, Tarragona</div>
+          <div class="exp-company">Wine distribution & retail, Tarragona</div>
           <div class="exp-desc">Maintained client and supplier relationships during a business transition. Structured sales workflows and standardised commercial operations across teams.</div>
         </div>
         <div class="exp-date">2025&ndash;2026</div>
@@ -168,7 +175,7 @@
         <div>
           <div class="exp-role">Bar Manager & Assistant Manager</div>
           <div class="exp-company">Harajuku Gyoza Group, Brisbane</div>
-          <div class="exp-desc">Managed AUD 40K weekly bar revenue. Increased average order value by 20% through upselling protocols. Led operational integration of a multi-brand restaurant group across venues.</div>
+          <div class="exp-desc">Managed AUD 40K weekly bar revenue. Increased average order value by 20% through upselling protocols. Led operational integration across venues in a fast-scaling hospitality group.</div>
         </div>
         <div class="exp-date">2022&ndash;2024</div>
       </div>
@@ -177,7 +184,7 @@
         <div>
           <div class="exp-role">Co-founder & Consultant</div>
           <div class="exp-company">TrasPazar, Colombia</div>
-          <div class="exp-desc">Co-founded a pro bono consultancy supporting entrepreneurs affected by Colombia's armed conflict. 70% of clients acquired through direct outreach.</div>
+          <div class="exp-desc">Co-founded an initiative supporting entrepreneurs affected by Colombia's armed conflict. 70% of clients acquired through direct outreach.</div>
         </div>
         <div class="exp-date">2019&ndash;2022</div>
       </div>
@@ -241,9 +248,43 @@
 
 <script>
 const obs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
 },{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+function animateCounter(el){
+  const target = parseInt(el.dataset.target);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const divide = el.dataset.divide ? parseInt(el.dataset.divide) : null;
+  const duration = 1800;
+  const steps = 60;
+  const increment = target / steps;
+  let current = 0;
+  let step = 0;
+  const timer = setInterval(()=>{
+    step++;
+    current = Math.min(Math.round(increment * step), target);
+    const display = divide ? Math.round(current / divide) : current;
+    el.textContent = prefix + display + suffix;
+    if(step >= steps){clearInterval(timer);}
+  }, duration / steps);
+}
+
+const counterObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      animateCounter(e.target);
+      counterObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('.metric-num[data-target]').forEach(el=>counterObs.observe(el));
 </script>
 </body>
 </html>
