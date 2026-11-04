@@ -1,1 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From a Google search to a table | Business design case by Michael Sepúlveda</title>
+<meta name="description" content="A self-initiated business design case: where independent restaurants lose diners they never see, and a product concept, business case and roadmap to win them back.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://michael-sepulveda.vercel.app/case/">
+<meta property="og:title" content="From a Google search to a table | Michael Sepúlveda">
+<meta property="og:description" content="Why independent restaurants lose tables without knowing why, and a product concept, business case and 12-week plan to win them back.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f7f4;
+    --ink: #1c2126;
+    --muted: #5b636b;
+    --rule: #d7dbd5;
+    --ledger: #2f5d50;
+    --ledger-soft: #e4ece7;
+    --tint: #eceeea;
+    --leak: #8a3b2e;
+    --sheet: #fdfdfb;
+    --sans: "Schibsted Grotesk", system-ui, sans-serif;
+    --serif: "Newsreader", Georgia, serif;
+    --measure: 40rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #15191c;
+      --ink: #e8ebe7;
+      --muted: #9aa39e;
+      --rule: #2c3337;
+      --ledger: #8cc2ae;
+      --ledger-soft: #1f2a27;
+      --tint: #23292c;
+      --leak: #e39a8b;
+      --sheet: #1b2023;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--serif); font-size: 1.1875rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--ink); text-underline-offset: 0.18em; text-decoration-thickness: 1px; text-decoration-color: var(--muted); }
+  a:hover { text-decoration-thickness: 2px; text-decoration-color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; }
 
+  header.site {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+    padding: 1.75rem 0 0; font-family: var(--sans); font-size: 0.95rem;
+  }
+  header.site a { color: var(--muted); text-decoration: none; display: inline-block; padding: 0.6rem 0; }
+  header.site a.name { color: var(--ink); font-weight: 700; }
+
+  .hero { padding: 4.5rem 0 3rem; }
+  .kind { font-family: var(--sans); font-size: 0.95rem; color: var(--muted); margin: 0 0 1rem; font-weight: 500; }
+  h1 {
+    font-family: var(--sans); font-weight: 800; font-size: clamp(2.3rem, 6vw, 4.3rem);
+    line-height: 1.03; letter-spacing: -0.025em; margin: 0 0 1.75rem; max-width: 14ch;
+  }
+  .lede { font-size: 1.3rem; line-height: 1.55; max-width: var(--measure); margin: 0 0 1.5rem; }
+  .note {
+    font-family: var(--sans); font-size: 0.95rem; color: var(--muted); max-width: var(--measure);
+    border-left: 3px solid var(--rule); padding-left: 0.9rem; margin: 0;
+  }
+
+  .insight {
+    border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule);
+    padding: 1.75rem 0; margin: 1rem 0 0;
+  }
+  .insight p {
+    font-family: var(--sans); font-weight: 700; font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.2; letter-spacing: -0.015em; margin: 0; max-width: 30ch;
+  }
+
+  section { padding: 4.25rem 0 0; }
+  h2 { font-family: var(--sans); font-weight: 700; font-size: 1.75rem; letter-spacing: -0.01em; margin: 0 0 1rem; }
+  h3 { font-family: var(--sans); font-weight: 700; font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+  section > p, .prose p { max-width: var(--measure); margin: 0 0 1rem; }
+  ul.points { max-width: var(--measure); padding-left: 1.2rem; margin: 0 0 1rem; }
+  ul.points li { margin-bottom: 0.5rem; }
+  .src { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
+
+  /* Journey: a real sequence of stages */
+  .journey { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--rule); }
+  .journey li { padding: 1.1rem 1rem 1.25rem 0; border-right: 1px solid var(--rule); }
+  .journey li + li { padding-left: 1rem; }
+  .journey li:last-child { border-right: 0; }
+  .journey .stage { font-family: var(--sans); font-weight: 700; font-size: 1.05rem; margin: 0 0 0.35rem; }
+  .journey .stage span { color: var(--ledger); font-weight: 500; margin-right: 0.35rem; }
+  .journey p { margin: 0 0 0.6rem; font-size: 0.98rem; line-height: 1.45; }
+  .journey .data { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
+  .journey .leak { font-family: var(--sans); font-size: 0.85rem; color: var(--leak); font-weight: 500; margin: 0.5rem 0 0; }
+  .journey .seen { font-family: var(--sans); font-size: 0.8rem; color: var(--muted); margin-top: 0.75rem; }
+
+  .vp {
+    border-left: 3px solid var(--ink);
+    padding: 1.25rem 1.5rem; max-width: 46rem; margin: 1.25rem 0 1.5rem; font-size: 1.15rem;
+  }
+  .vp p { margin: 0; }
+
+  table { border-collapse: collapse; width: 100%; max-width: 52rem; font-family: var(--sans); font-size: 0.95rem; margin: 0.75rem 0 1rem; }
+  th, td { text-align: left; vertical-align: top; padding: 0.65rem 0.9rem 0.65rem 0; border-bottom: 1px solid var(--rule); }
+  th { font-weight: 700; border-bottom: 2px solid var(--ink); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .scroll { overflow-x: auto; }
+
+  .risks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.25rem; }
+  .risk { border-top: 2px solid var(--ink); padding-top: 0.9rem; }
+  .risk h3 { margin: 0 0 0.6rem; font-size: 1.05rem; line-height: 1.3; }
+  .risk dl { margin: 0; font-size: 0.98rem; line-height: 1.45; }
+  .risk dt { font-family: var(--sans); font-size: 0.8rem; font-weight: 700; color: var(--muted); margin-top: 0.6rem; }
+  .risk dd { margin: 0.1rem 0 0; }
+  .risk dd.kill { color: var(--leak); }
+
+  .roadmap { list-style: none; margin: 1.25rem 0 0; padding: 0; max-width: 52rem; }
+  .roadmap li { display: grid; grid-template-columns: 9rem 1fr; gap: 1.5rem; padding: 1rem 0; border-top: 1px solid var(--rule); }
+  .roadmap li:last-child { border-bottom: 1px solid var(--rule); }
+  .roadmap .when { font-family: var(--sans); font-weight: 700; font-size: 0.98rem; }
+  .roadmap .when span { display: block; font-weight: 400; color: var(--muted); font-size: 0.88rem; }
+  .roadmap p { margin: 0; }
+  .metric { font-family: var(--sans); font-size: 0.9rem; color: var(--muted); display: block; margin-top: 0.3rem; }
+
+  .end { padding: 4.5rem 0 2.5rem; }
+  .end p.big { font-family: var(--sans); font-weight: 800; font-size: clamp(1.6rem, 3.5vw, 2.4rem); letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 1.25rem; max-width: 24ch; }
+  .end-sub { font-family: var(--sans); font-size: 1.1rem; margin: -0.5rem 0 1.25rem; }
+  .end ul a { display: inline-block; padding: 0.55rem 0; }
+  .end ul { list-style: none; margin: 0; padding: 0; font-family: var(--sans); font-size: 1.05rem; display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; }
+  .sources { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); padding: 2rem 0 3rem; border-top: 1px solid var(--rule); }
+  .sources ol { padding-left: 1.2rem; margin: 0.5rem 0 0; max-width: 52rem; }
+  .sources li { margin-bottom: 0.35rem; }
+  .sources a, .sheet-foot span a { display: inline-block; padding: 0.35rem 0; }
+
+  /* One-page summary: a ledger sheet */
+  .sheet {
+    background: var(--sheet); border: 1px solid var(--rule); border-top: 4px solid var(--ink);
+    padding: 2.5rem 2.75rem 2rem; margin: 2.5rem 0 0; font-family: var(--sans);
+  }
+  .sheet .kind { margin-bottom: 0.75rem; }
+  .sheet h1 { font-size: clamp(2.1rem, 5.2vw, 3.6rem); margin: 0 0 1rem; }
+  .sheet-head { display: grid; grid-template-columns: minmax(0, 1fr) 17.5rem; gap: 3rem; align-items: start; }
+  .claim, .sheet .claim { font-family: var(--serif); font-size: 1.25rem; line-height: 1.5; margin: 0; max-width: 36rem; }
+
+  .facts { margin: 1.75rem 0 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); }
+  .facts div { padding: 0.9rem 1rem 0 0; display: flex; flex-direction: column; }
+  .facts div + div { border-left: 1px solid var(--rule); padding-left: 1rem; }
+  .facts dd.v { order: -1; margin: 0 0 0.2rem; font-weight: 800; font-size: 1.9rem; letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .facts dd.v.neg { color: var(--leak); }
+  .facts dd.v.pos { color: var(--ledger); }
+  .facts dt { font-weight: 700; font-size: 0.92rem; }
+  .facts dd.n { margin: 0; font-size: 0.85rem; color: var(--muted); line-height: 1.35; }
+
+  /* The product as the cover: the Monday report on a phone */
+  .phone { margin: 0; justify-self: end; width: 17.5rem; }
+  .screen { border: 2px solid var(--ink); border-radius: 2rem; padding: 1.4rem 1.15rem 1.2rem; background: var(--paper); font-family: var(--sans); }
+  .screen .app { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--muted); margin: 0 0 1rem; }
+  .screen .head { font-weight: 800; font-size: 1.45rem; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 0.3rem; }
+  .screen .cash { font-size: 0.9rem; margin: 0 0 1rem; }
+  .screen .lbl { font-size: 0.75rem; color: var(--muted); margin: 0 0 0.3rem; }
+  .screen .cause { font-weight: 700; color: var(--leak); font-size: 1rem; margin: 0 0 0.4rem; }
+  .screen ul { list-style: none; margin: 0 0 1rem; padding: 0; font-size: 0.82rem; }
+  .screen li { display: flex; justify-content: space-between; gap: 0.5rem; padding: 0.28rem 0; border-top: 1px solid var(--rule); }
+  .screen li b { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .screen li b.dn { color: var(--leak); }
+  .screen li b.eq { color: var(--muted); font-weight: 500; }
+  .screen .act { font-size: 0.92rem; line-height: 1.4; margin: 0 0 0.75rem; }
+  .screen .btns { display: flex; gap: 0.5rem; margin: 0 0 1rem; }
+  .screen .btns span { flex: 1; text-align: center; font-size: 0.8rem; font-weight: 700; padding: 0.5rem 0.3rem; border: 1.5px solid var(--ink); border-radius: 999px; }
+  .screen .btns span.primary { background: var(--ink); color: var(--paper); }
+  .screen .last { font-size: 0.82rem; margin: 0; padding-top: 0.6rem; border-top: 1px solid var(--rule); }
+  .screen .last b { color: var(--ledger); }
+  .phone figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; text-align: center; }
+
+  /* Testimonial */
+  .quote { margin: 1.75rem 0; padding: 0 0 0 1.25rem; border-left: 3px solid var(--ink); max-width: 40rem; }
+  .quote p { font-family: var(--serif); font-size: 1.2rem; line-height: 1.5; margin: 0 0 0.5rem; }
+  .quote footer { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); }
+  .sheet .quote { margin: 2rem 0 0; }
+  .sheet .quote p { font-size: 1.1rem; }
+
+  .sheet h2 { font-size: 1rem; font-weight: 700; letter-spacing: 0; margin: 0 0 0.9rem; }
+  .blk { border-top: 1px solid var(--rule); padding-top: 1.25rem; margin-top: 2rem; }
+  .sheet p { margin: 0 0 0.75rem; font-size: 1rem; line-height: 1.5; }
+  .small, .sheet .small { font-size: 0.88rem; color: var(--muted); line-height: 1.45; }
+
+  /* The flow of diners: continuous where it holds, broken where it leaks */
+  .flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0 0.35rem; }
+  .flow li { position: relative; padding-top: 1.35rem; }
+  .flow li::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 8px; background: var(--ledger);
+    transform-origin: left center;
+  }
+  .flow li.leak::before { background: repeating-linear-gradient(90deg, var(--leak) 0 14px, transparent 14px 22px); }
+  .flow li.ok::before { height: 12px; top: -2px; }
+  .flow .st { display: block; font-weight: 700; font-size: 1.02rem; }
+  .flow .st span { color: var(--muted); font-weight: 500; margin-right: 0.3rem; }
+  .flow .sig { display: block; font-size: 0.86rem; color: var(--muted); line-height: 1.35; margin-top: 0.2rem; }
+  .flow li.leak .sig { color: var(--leak); font-weight: 500; }
+  .flow li.ok .sig { color: var(--ledger); font-weight: 500; }
+  .flow-key { margin-top: 1rem !important; }
+
+  .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0 3rem; }
+
+  /* Diagnosis matrix */
+  table.diag { width: 100%; max-width: none; font-size: 0.9rem; margin: 0.25rem 0 0.75rem; table-layout: fixed; }
+  table.diag th, table.diag td { padding: 0.5rem 0.4rem; text-align: center; border-bottom: 1px solid var(--rule); }
+  table.diag thead th { border-bottom: 2px solid var(--ink); font-size: 0.88rem; }
+  table.diag tbody th { text-align: left; font-weight: 500; width: 38%; padding-left: 0; }
+  table.diag .here { background: var(--tint); }
+  table.diag td { font-size: 1.15rem; font-weight: 700; line-height: 1; }
+  table.diag td.dn { color: var(--leak); }
+  table.diag td.eq { color: var(--muted); font-weight: 500; }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Business models */
+  .model { padding: 0.9rem 0 0.9rem 1rem; border-left: 3px solid var(--rule); margin-bottom: 1rem; }
+  .model.thesis { border-left-color: var(--ink); }
+  .model .role { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.35rem; }
+  .model .fig { font-weight: 800; font-size: 2rem; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 0.3rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .model p { font-size: 0.93rem; line-height: 1.45; }
+  .bars { list-style: none; margin: 0.4rem 0 0; padding: 0; font-size: 0.85rem; }
+  .bars li { display: grid; grid-template-columns: 5.5rem 1fr 3.6rem; gap: 0.6rem; align-items: center; padding: 0.22rem 0; }
+  .bars .bar { height: 10px; background: var(--rule); }
+  .bars .bar i { display: block; height: 100%; background: var(--ink); }
+  .bars .amt { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+
+  /* 12-week plan as a Gantt */
+  .gantt { list-style: none; margin: 0; padding: 0; font-size: 0.9rem; }
+  .gantt li { display: grid; grid-template-columns: 15rem 1fr; gap: 1rem; align-items: center; padding: 0.3rem 0; }
+  .gantt .lbl { font-weight: 700; }
+  .gantt .lbl span { display: inline; margin-left: 0.4rem; font-weight: 400; color: var(--muted); font-size: 0.85rem; }
+  .gantt .track { display: grid; grid-template-columns: repeat(12, 1fr); height: 14px; background: repeating-linear-gradient(90deg, transparent 0 calc(100%/12 - 1px), var(--rule) calc(100%/12 - 1px) calc(100%/12)); }
+  .gantt .ph { background: var(--muted); }
+  .gantt .ph.dec { background: var(--ink); }
+  .gantt .axis { padding-top: 0.1rem; }
+  .gantt .ticks { display: grid; grid-template-columns: repeat(12, 1fr); font-size: 0.82rem; color: var(--muted); }
+  .gantt .ticks span:nth-child(1) { grid-column: 1 / 4; }
+  .gantt .ticks span:nth-child(2) { grid-column: 4 / 7; text-align: right; }
+  .gantt .ticks span:last-child { grid-column: 7 / 13; text-align: right; white-space: nowrap; }
+  .gates { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; font-size: 0.88rem; line-height: 1.4; }
+  .gates li { border-top: 2px solid var(--ink); padding-top: 0.5rem; }
+  .gates b { display: block; color: var(--muted); font-weight: 500; margin-bottom: 0.1rem; }
+  .gates .gn { display: block; font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; line-height: 1.15; color: var(--ink); }
+  .gates-h { margin: 1.25rem 0 0 !important; font-weight: 700; font-size: 0.95rem !important; }
+
+  .sheet-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.75rem 2rem; border-top: 2px solid var(--ink); margin-top: 2rem; padding-top: 1rem; font-size: 0.95rem; }
+  .sheet-foot .go { font-weight: 700; font-size: 1.05rem; display: inline-block; padding: 0.5rem 0; }
+  .sheet-foot .go::after { content: " \2193"; }
+
+  .full-intro { padding: 4.5rem 0 1rem; }
+
+  /* Folding panels: open on desktop, folded on phones with the conclusion in the summary */
+  .fold > summary { list-style: none; cursor: default; }
+  .fold > summary::-webkit-details-marker { display: none; }
+  .fold .sum { display: none; }
+  .rec { margin-top: 1.75rem; }
+  .rec.first { margin: 0 0 1.5rem; }
+  .ficha { margin: 1.5rem 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0 1.25rem; font-family: var(--sans); font-size: 0.88rem; border-top: 2px solid var(--ink); max-width: 64rem; }
+  .ficha div { padding-top: 0.6rem; }
+  .ficha dt { color: var(--muted); }
+  .ficha dd { margin: 0.15rem 0 0; font-weight: 500; line-height: 1.35; }
+  @media screen and (max-width: 860px) { .ficha { grid-template-columns: 1fr 1fr; gap: 0.25rem 1.25rem; } }
+  .toc { font-family: var(--sans); font-size: 0.95rem; margin: 1.5rem 0 0; }
+  .toc p { margin: 0 0 0.35rem; color: var(--muted); }
+  .toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 1.5rem; }
+  .toc a { display: inline-block; padding: 0.5rem 0; font-weight: 500; }
+  section h2[id], .full-intro { scroll-margin-top: 1rem; }
+  a.src { color: var(--muted); text-decoration: none; }
+  a.src:hover { color: var(--ledger); text-decoration: underline; }
+  .sources h2 { font-size: 0.95rem; margin: 0; }
+  .sources li:target { color: var(--ink); }
+
+  /* Revenue tree: every branch measured or named as a gap */
+  .tree { margin: 1.5rem 0 1rem; font-family: var(--sans); font-size: 0.95rem; max-width: 46rem; }
+  .tree ul { list-style: none; margin: 0; padding: 0 0 0 1.9rem; }
+  .tree > ul { padding-left: 0; }
+  .tree li { position: relative; padding: 0.3rem 0; }
+  .tree ul ul > li::before { content: ""; position: absolute; left: -1.15rem; top: 0; bottom: 0; border-left: 1px solid var(--muted); }
+  .tree ul ul > li:last-child::before { bottom: auto; height: 1.3rem; }
+  .tree ul ul > li::after { content: ""; position: absolute; left: -1.15rem; top: 1.3rem; width: 1rem; border-top: 1px solid var(--muted); }
+  .node { display: inline-flex; flex-wrap: wrap; gap: 0.15rem 0.75rem; align-items: baseline; border: 1px solid var(--rule); background: var(--sheet); padding: 0.4rem 0.75rem; }
+  .node.root { border: 2px solid var(--ink); }
+  .node b { font-weight: 700; }
+  .node .r { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .node .r.leak { color: var(--leak); }
+  .node .r.ok { color: var(--ledger); }
+  .node .r.gap { color: var(--muted); font-weight: 500; }
+  /* Margin notes: key figure plus source beside the argument */
+  .mn { display: block; font-family: var(--sans); font-size: 0.88rem; line-height: 1.4; color: var(--muted); border-left: 3px solid var(--ink); padding: 0.1rem 0 0.1rem 0.9rem; margin: 0 0 1.25rem; max-width: 40rem; }
+  .mn .fig { display: block; color: var(--ink); font-weight: 800; font-size: 1.6rem; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.15rem; }
+  @media (min-width: 1000px) {
+    .with-margin .mn { float: right; clear: right; width: 13.5rem; margin: 0.35rem 0 1.5rem 2.5rem; }
+    .with-margin .scroll, .with-margin .tree, .with-margin .vp { max-width: 40rem; }
+  }
+  /* Annotations on charts */
+  .anno { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-left: 0.75rem; white-space: nowrap; }
+  .anno::before { content: ""; display: inline-block; width: 1.5rem; border-top: 2px dotted var(--muted); vertical-align: middle; margin-right: 0.4rem; }
+  @media screen and (max-width: 760px) { .anno { display: block; margin: 0.25rem 0 0 0.25rem; white-space: normal; } }
+  /* Service blueprint */
+  table.bp { max-width: none; font-size: 0.88rem; line-height: 1.4; margin-top: 1.25rem; }
+  table.bp caption { caption-side: bottom; text-align: left; font-size: 0.85rem; color: var(--muted); padding-top: 0.75rem; }
+  table.bp th, table.bp td { padding: 0.7rem 0.9rem 0.7rem 0; }
+  table.bp thead th { font-size: 0.85rem; }
+  table.bp tbody th { width: 9.5rem; font-weight: 700; border-bottom: 1px solid var(--rule); }
+  table.bp tbody th span { display: block; font-weight: 400; color: var(--muted); font-size: 0.8rem; margin-top: 0.15rem; }
+  table.bp .back { border-left: 2px dashed var(--muted); padding-left: 0.9rem; }
+  table.bp tr.core th, table.bp tr.core td { background: var(--tint); }
+  table.bp tr.core th { padding-left: 0.6rem; }
+  @media screen and (max-width: 760px) {
+    table.bp, table.bp tbody, table.bp tr, table.bp th, table.bp td, table.bp caption { display: block; width: auto; }
+    table.bp caption { padding: 0 0 0.75rem; }
+    table.bp thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    table.bp tr { border-top: 2px solid var(--ink); padding: 0.4rem 0 0.6rem; }
+    table.bp tr.core { background: var(--tint); padding-left: 0.6rem; padding-right: 0.6rem; }
+    table.bp tr.core th, table.bp tr.core td { background: none; }
+    table.bp tbody th { width: auto; padding: 0.4rem 0; border: 0; font-size: 1rem; }
+    table.bp td { border: 0; padding: 0.35rem 0; }
+    table.bp td::before { content: attr(data-label); display: block; font-size: 0.78rem; color: var(--muted); }
+    table.bp td.back { border-left: 0; border-top: 2px dashed var(--muted); padding-left: 0; margin-top: 0.35rem; padding-top: 0.5rem; }
+  }
+  .tree-note { font-family: var(--sans); font-size: 0.9rem; color: var(--muted); max-width: var(--measure); }
+  .full-intro h2 { font-size: 2.2rem; letter-spacing: -0.02em; }
+  h2 .num { color: var(--muted); font-weight: 500; margin-right: 0.6rem; font-variant-numeric: tabular-nums; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .flow li::before { transform: scaleX(0); animation: draw 0.55s cubic-bezier(.2,.7,.2,1) forwards; }
+    .flow li:nth-child(2)::before { animation-delay: 0.12s; }
+    .flow li:nth-child(3)::before { animation-delay: 0.24s; }
+    .flow li:nth-child(4)::before { animation-delay: 0.36s; }
+    .flow li:nth-child(5)::before { animation-delay: 0.48s; }
+    @keyframes draw { to { transform: scaleX(1); } }
+  }
+
+  @media screen and (max-width: 860px) {
+    .journey { grid-template-columns: 1fr; }
+    .journey li, .journey li + li { padding: 1rem 0; border-right: 0; border-bottom: 1px solid var(--rule); }
+    .risks { grid-template-columns: 1fr; }
+    .sheet-head, .split { grid-template-columns: 1fr; }
+    .sheet-head { gap: 2rem; }
+    .phone { justify-self: center; width: 100%; max-width: 18rem; }
+    .gates { grid-template-columns: 1fr 1fr; gap: 0.75rem 1.25rem; }
+  }
+  @media screen and (max-width: 760px) {
+    body { font-size: 1.0625rem; }
+    .wrap { padding: 0 1rem; }
+    .lede { font-size: 1.15rem; }
+    section { padding-top: 3rem; }
+    .roadmap li { grid-template-columns: 1fr; gap: 0.35rem; }
+    .sheet { padding: 1.5rem 1.1rem 1.25rem; margin-top: 1.5rem; }
+    .claim, .sheet .claim { font-size: 1.1rem; }
+    .flow { grid-template-columns: 1fr; gap: 0; }
+    .flow li { padding: 0.55rem 0 0.55rem 1.4rem; }
+    .flow li::before { top: 0; bottom: 0; left: 0; right: auto; width: 8px; height: auto; transform-origin: center top; }
+    .flow li.leak::before { background: repeating-linear-gradient(180deg, var(--leak) 0 10px, transparent 10px 16px); }
+    .flow li.ok::before { width: 12px; left: -2px; top: 0; height: auto; }
+    .flow .sig { display: inline; margin-left: 0.4rem; }
+    .gantt li { grid-template-columns: 1fr; gap: 0.3rem; padding: 0.45rem 0; }
+    .gantt .lbl span { display: block; margin-left: 0; }
+    .gates { grid-template-columns: 1fr; }
+    .tree ul { padding-left: 1.4rem; }
+    .tree ul ul > li::before, .tree ul ul > li::after { left: -0.85rem; }
+    .tree ul ul > li::after { width: 0.75rem; }
+    .full-intro { padding-top: 3rem; }
+    .fold > summary { cursor: pointer; display: grid; grid-template-columns: 1fr auto; column-gap: 1rem; align-items: center; min-height: 44px; padding: 0.2rem 0; }
+    .fold > summary h2 { margin: 0 0 0.2rem; grid-column: 1; }
+    .fold .sum { display: block; grid-column: 1; font-size: 0.95rem; line-height: 1.4; }
+    .fold > summary::after {
+      content: ""; grid-column: 2; grid-row: 1 / span 2; width: 18px; height: 18px;
+      background:
+        linear-gradient(var(--ink), var(--ink)) center / 18px 2px no-repeat,
+        linear-gradient(var(--ink), var(--ink)) center / 2px 18px no-repeat;
+    }
+    .fold[open] > summary::after { background: linear-gradient(var(--ink), var(--ink)) center / 18px 2px no-repeat; }
+    .fold[open] > summary { margin-bottom: 0.9rem; }
+    .full-intro h2 { font-size: 1.8rem; }
+  }
+  @media screen and (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+    .flow li::before { transform: scaleY(0); animation-name: drawv; }
+    @keyframes drawv { to { transform: scaleY(1); } }
+  }
+
+  @media print {
+    @page { size: A4; margin: 12mm; }
+    .sheet { zoom: 0.58; }
+    .sheet, .sheet *, .sheet *::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sheet .quote, .phone figcaption { display: none; }
+    .sheet-foot .go { display: none; }
+    .flow-key, .model .small, .fold .sum { display: none; }
+    .toc { display: none; }
+    body { background: #fff; }
+    header.site { display: none; }
+    .sheet { border: 0; margin: 0; padding: 0; break-after: page; }
+    .flow li::before { animation: none; transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="site">
+  <a class="name" href="../">Michael Sepúlveda</a>
+  <a href="../">Back to profile</a>
+</header>
+
+<main>
+
+<article class="sheet" aria-labelledby="title">
+
+  <div class="sheet-head">
+    <div>
+      <p class="kind">Business design case, in one page</p>
+      <h1 id="title">From a Google search to a table</h1>
+      <p class="claim"><strong>Why do independent restaurants lose tables without knowing why?</strong> Because the data that explains it is split between Google and the till, and nobody joins it. Capture does, every Monday, without adding a single task to the floor.</p>
+      <dl class="facts" aria-label="Fieldwork in a Barcelona restaurant">
+        <div><dt>Tables</dt><dd class="v neg">−20%</dd><dd class="n">vs the same months over three years</dd></div>
+        <div><dt>Spend per ticket</dt><dd class="v pos">+7%</dd><dd class="n">menu prices unchanged</dd></div>
+        <div><dt>Tasks added</dt><dd class="v">0</dd><dd class="n">for floor staff, by design</dd></div>
+      </dl>
+    </div>
+    <figure class="phone" aria-label="Mock of the Monday report">
+      <div class="screen">
+        <p class="app"><span>Capture, in your till app</span><span>Mon, 3 Nov</span></p>
+        <p class="head">12 tables below your usual week</p>
+        <p class="cash">About 500 € in sales.</p>
+        <p class="lbl">Why</p>
+        <p class="cause">Fewer people saw you on Google</p>
+        <ul>
+          <li><span>Searches in the area</span><b class="eq">steady</b></li>
+          <li><span>Your profile impressions</span><b class="dn">−9%</b></li>
+          <li><span>Tables per profile action</span><b class="eq">steady</b></li>
+        </ul>
+        <p class="lbl">This week</p>
+        <p class="act">Add 10 recent photos and answer the 6 reviews still waiting.</p>
+        <p class="btns" aria-hidden="true"><span class="primary">I'll do it</span><span>Show another</span></p>
+        <p class="last">Last week you fixed your opening hours. <b>Impressions +4%.</b></p>
+      </div>
+      <figcaption>Mock report with illustrative numbers.</figcaption>
+    </figure>
+  </div>
+
+  <div class="blk">
+    <h2>Where diners get lost</h2>
+    <ol class="flow">
+      <li class="leak"><span class="st"><span>1</span>Search</span><span class="sig">17% fewer Google impressions</span></li>
+      <li><span class="st"><span>2</span>Profile</span><span class="sig">Views, reviews</span></li>
+      <li><span class="st"><span>3</span>Action</span><span class="sig">Calls, directions, booking clicks</span></li>
+      <li class="leak"><span class="st"><span>4</span>Table</span><span class="sig">20% fewer tables</span></li>
+      <li class="ok"><span class="st"><span>5</span>Spend</span><span class="sig">Spend per ticket up 7%</span></li>
+    </ol>
+    <p class="small flow-key">Solid green is where diners keep flowing. Broken red is where the fieldwork found the leak. Till and reservation tools only cover the last two stages.</p>
+  </div>
+
+  <div class="split">
+    <details class="blk fold" open>
+      <summary><h2>What Capture does</h2><span class="sum">A Monday report that names why tables fell, and one action to take.</span></summary>
+      <p>A one-page report every Monday, built from the restaurant's Google profile and till. It follows weekly tables, names the cause of a bad week from three signals and recommends one action. Every owner starts with a free leak check on their last 12 months.</p>
+      <table class="diag">
+        <caption class="vh">How Capture tells the three causes apart</caption>
+        <thead><tr><th scope="col"><span class="vh">Signal</span></th><th scope="col">Market</th><th scope="col" class="here">Visibility</th><th scope="col">Conversion</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Searches in the area</th><td class="dn">↓<span class="vh"> falls</span></td><td class="eq here">=<span class="vh"> steady</span></td><td class="eq">=<span class="vh"> steady</span></td></tr>
+          <tr><th scope="row">Profile impressions</th><td class="dn">↓<span class="vh"> falls</span></td><td class="dn here">↓<span class="vh"> falls</span></td><td class="eq">=<span class="vh"> steady</span></td></tr>
+          <tr><th scope="row">Tables</th><td class="dn">↓<span class="vh"> falls</span></td><td class="dn here">↓<span class="vh"> falls</span></td><td class="dn">↓<span class="vh"> falls</span></td></tr>
+        </tbody>
+      </table>
+      <p class="small">The fieldwork points to visibility. Area search data from Google Trends is the check that rules out a shrinking market.</p>
+    </details>
+
+    <details class="blk fold" open>
+      <summary><h2>Who pays</h2><span class="sum">Embedded in a till or payments provider, with standalone as the floor.</span></summary>
+      <div class="model thesis">
+        <p class="role">The thesis: embedded in a payments, till or reservation provider</p>
+        <p class="fig">1.4 points</p>
+        <p>of annual merchant churn is all a free layer must prevent to pay for itself, at 1 € a month to serve and 70 € of partner revenue per merchant (illustrative).</p>
+        <p class="small">Precedent: in 2026 American Express agreed to buy TheFork and its 50,000 restaurants.</p>
+      </div>
+      <div class="model">
+        <p class="role">The floor: sold directly, 59 € a month as the price to test</p>
+        <p>About 277,000 € a year at 3% of Catalonia's independent restaurants, and only viable with low churn. Maximum acquisition cost for an LTV/CAC of 3:</p>
+        <ul class="bars">
+          <li><span>2% churn</span><span class="bar"><i style="width:100%"></i></span><span class="amt">790 €</span></li>
+          <li><span>4% churn</span><span class="bar"><i style="width:49%"></i></span><span class="amt">390 €</span></li>
+          <li><span>6% churn</span><span class="bar"><i style="width:33%"></i></span><span class="amt">260 €</span></li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <details class="blk fold" open>
+    <summary><h2>12 weeks to a decision</h2><span class="sum">Four outcomes to prove, or stop: value, usability, feasibility and viability.</span></summary>
+    <ol class="gantt">
+      <li><span class="lbl">Discover<span>10 owner interviews</span></span><span class="track"><span class="ph" style="grid-column:1/3"></span></span></li>
+      <li><span class="lbl">Concierge pilot<span>3 restaurants</span></span><span class="track"><span class="ph" style="grid-column:3/7"></span></span></li>
+      <li><span class="lbl">Build the MVP<span>automate the data</span></span><span class="track"><span class="ph" style="grid-column:7/13"></span></span></li>
+      <li><span class="lbl">Decide<span>go or stop</span></span><span class="track"><span class="ph dec" style="grid-column:12/13"></span></span></li>
+      <li class="axis" aria-hidden="true"><span></span><span class="ticks"><span>Week 1</span><span>Week 6</span><span>Week 12</span></span></li>
+    </ol>
+    <p class="gates-h">Outcomes to prove. Below any of these, we stop.</p>
+    <ul class="gates">
+      <li><b>Value</b><span class="gn">2 of 3</span>pilot owners act on a recommendation</li>
+      <li><b>Usability</b><span class="gn">4 of 5</span>owners name the cause and the action in two minutes</li>
+      <li><b>Feasibility</b><span class="gn">2 venues</span>show a stable link between Google and till data</li>
+      <li><b>Viability</b><span class="gn">3 of 10</span>owners place 59 € in their price range, or a partner sees value above its cost</li>
+    </ul>
+  </details>
+
+  <blockquote class="quote">
+    <p>“In a traditional business, cash flow is what matters most, and because it never stops, we often don't really understand it. Work like this is how we start to see its real size.”</p>
+    <footer>Management of the restaurant in the fieldwork, anonymised</footer>
+  </blockquote>
+
+  <div class="sheet-foot">
+    <a class="go" href="#full">Read the full case, about 15 minutes</a>
+    <span>Michael Sepúlveda, <a href="mailto:msepulvedac1@gmail.com">msepulvedac1@gmail.com</a></span>
+  </div>
+</article>
+<script>
+(function () {
+  var mq = window.matchMedia('(max-width: 760px)');
+  var folds = document.querySelectorAll('.fold');
+  function sync() {
+    folds.forEach(function (d) {
+      d.open = !mq.matches;
+      d.querySelector('summary').tabIndex = mq.matches ? 0 : -1;
+    });
+  }
+  folds.forEach(function (d) {
+    d.querySelector('summary').addEventListener('click', function (e) { if (!mq.matches) e.preventDefault(); });
+  });
+  sync();
+  if (mq.addEventListener) mq.addEventListener('change', sync); else mq.addListener(sync);
+  window.addEventListener('beforeprint', function () { folds.forEach(function (d) { d.open = true; }); });
+  window.addEventListener('afterprint', sync);
+})();
+</script>
+
+<div class="full-intro" id="full">
+  <h2>The full case</h2>
+  <div class="vp rec first"><p><strong>Recommendation.</strong> Test Capture as a layer inside a till or payments provider, not as a standalone subscription. Spend 12 weeks retiring four risks before building anything (value, usability, feasibility and viability), and stop at the first gate that fails.</p></div>
+  <p class="lede">Independent restaurants know what they sold, and sometimes what was booked. They don't see what happened before: how many people found them, looked, and went somewhere else. When revenue drops, they can't tell whether the market shrank, they became harder to find, or they stopped turning interest into tables. This case turns that into a product concept, a business case and a plan to test it.</p>
+  <dl class="ficha">
+    <div><dt>Case</dt><dd>Self-initiated, from fieldwork</dd></div>
+    <div><dt>My role</dt><dd>Research, business and service design, pricing</dd></div>
+    <div><dt>Fieldwork</dt><dd>4 months in one Barcelona restaurant, anonymised</dd></div>
+    <div><dt>Data</dt><dd>Till tickets, reservations and Google Business Profile</dd></div>
+    <div><dt>Evidence</dt><dd>13 public sources, listed at the end</dd></div>
+  </dl>
+  <p class="note">Till data covers six months against the same months in three years. How AI was used, and where it wasn't, is explained in the last section.</p>
+  <nav class="toc" aria-label="Sections of the full case">
+    <p>About 15 minutes to read. Jump to a section:</p>
+    <ul>
+      <li><a href="#evidence-h">Evidence</a></li>
+      <li><a href="#who-h">Whose problem</a></li>
+      <li><a href="#concept-h">The concept</a></li>
+      <li><a href="#service-h">The service</a></li>
+      <li><a href="#case-h">Business case</a></li>
+      <li><a href="#risks-h">Risks</a></li>
+      <li><a href="#roadmap-h">Roadmap</a></li>
+      <li><a href="#limits-h">Limits</a></li>
+      <li><a href="#built-h">How I built this</a></li>
+    </ul>
+  </nav>
+</div>
+
+<section class="with-margin" aria-labelledby="evidence-h">
+  <h2 id="evidence-h"><span class="num">1</span>What I found on the ground</h2>
+  <aside class="mn"><span class="fig">−17%</span>Google profile impressions in twelve months. Google keeps about 18 months of data <a class="src" href="#src-1">[1]</a>.</aside>
+  <p>Revenue at the restaurant was falling and nobody could say why. I combined till tickets, reservation data and the Google Business Profile.</p>
+  <blockquote class="quote">
+    <p>“We know we're down, and we know how everything is going. But in a traditional business, cash flow is what matters most, and because it never stops, we often don't really understand it. Work like this is how we start to measure it and see its real size.”</p>
+    <footer>Management of the restaurant in the fieldwork, anonymised</footer>
+  </blockquote>
+  <ul class="points">
+    <li><strong>It was volume.</strong> Against the same months in previous years, there were 20% fewer tables, while spend per ticket rose 7% with menu prices unchanged. Without guest counts (next point), I can't tell whether each diner spent more or tables were simply larger.</li>
+    <li><strong>A metric had silently disappeared.</strong> Guest counts stopped being recorded after a process change, and nobody noticed.</li>
+    <li><strong>The fix couldn't cost floor time.</strong> Management rejected anything that asked staff to log more, such as guest counts or no-shows. Only till tickets were reliable.</li>
+    <li><strong>The leak started upstream.</strong> Google profile impressions fell 17% over twelve months: fewer people were seeing the restaurant in local search, before any diner reached the door. Google keeps about 18 months of profile data, so this comparison cannot go back three years like the till data <a class="src" href="#src-1">[1]</a>.</li>
+  </ul>
+  <p>The pattern is not unique to one venue. In the first half of 2025, 74% of restaurant visits in Spain were booked ahead, two thirds of those bookings were made online, and Google handled 37% of digital bookings, up 27% in a year, according to CoverManager data on 14 million reservations <a class="src" href="#src-2">[2]</a>. In a TheFork survey, 24% of owners who had closed a restaurant blamed too few diners <a class="src" href="#src-3">[3]</a>. Reservation tools start counting at the booking. Everything before it is invisible to the owner.</p>
+  <h3>Breaking the drop down</h3>
+  <p>Revenue is tables times spend per ticket. Tables depend on how many people search, how many of them see the restaurant, and how many of those come in. Each branch is either measured or named as a gap.</p>
+  <div class="tree" role="group" aria-label="Revenue tree for the restaurant">
+    <ul>
+      <li><span class="node root"><b>Revenue</b><span class="r leak">falling</span></span>
+        <ul>
+          <li><span class="node"><b>Tables</b><span class="r leak">−20%</span></span>
+            <ul>
+              <li><span class="node"><b>Market</b>searches in the area<span class="r gap">not measured yet</span></span><span class="anno">the check still missing</span></li>
+              <li><span class="node"><b>Visibility</b>profile impressions<span class="r leak">−17%</span></span><span class="anno">the leak the fieldwork found</span></li>
+              <li><span class="node"><b>Conversion</b>tables per profile action<span class="r gap">not measured yet</span></span></li>
+            </ul>
+          </li>
+          <li><span class="node"><b>Spend per ticket</b><span class="r ok">+7%</span></span>
+            <ul>
+              <li><span class="node"><b>Price per item</b><span class="r ok">unchanged</span></span></li>
+              <li><span class="node"><b>Diners per ticket</b><span class="r gap">unknown, guest counts lost</span></span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <p class="tree-note">Capture measures the two gaps on the tables branch every week. The third, diners per ticket, stays open by design: counting guests would add a task to the floor.</p>
+</section>
+
+<section class="with-margin" aria-labelledby="who-h">
+  <h2 id="who-h"><span class="num">2</span>Whose problem this solves, and why now</h2>
+  <aside class="mn"><span class="fig">+27%</span>growth in a year of Google's share of digital restaurant bookings in Spain <a class="src" href="#src-2">[2]</a>.</aside>
+  <p>Three people have a stake, each with a different need:</p>
+  <ul class="points">
+    <li><strong>The owner</strong> needs to understand a cash flow that never stops, and why it moved.</li>
+    <li><strong>The manager</strong> needs one clear action, never more admin.</li>
+    <li><strong>The till or payments provider</strong> needs merchants who stay.</li>
+  </ul>
+  <p>Owners also differ in how much the problem hurts, and so in what they would pay. Three segments, with willingness to pay as a hypothesis the interviews price separately:</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Segment</th><th>What they need</th><th>Likely willingness to pay</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Single site, tables falling</strong></td><td>To know why, this week</td><td>Highest: the pain is current. The first segment.</td></tr>
+      <tr><td>Single site, stable trade</td><td>An early warning</td><td>Low: nothing feels broken</td></tr>
+      <tr><td>Small group, 2 to 5 sites</td><td>To spot the weak site</td><td>High per group, if sites can be compared</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>Why now</h3>
+  <ul class="points">
+    <li><strong>Google is becoming a booking channel.</strong> Its share of digital restaurant bookings in Spain grew 27% in a year <a class="src" href="#src-2">[2]</a>.</li>
+    <li><strong>Payments companies want the diner's first step.</strong> American Express agreed to buy TheFork in 2026 <a class="src" href="#src-4">[4]</a>.</li>
+    <li><strong>Analytics is now free inside tills.</strong> Spanish tills bundle it from 50 € a month <a class="src" href="#src-11">[11]</a>, so the value has to be the diagnosis, not the dashboard.</li>
+    <li><strong>AI makes one-venue reports affordable.</strong> A plain-language weekly report no longer needs an analyst per restaurant.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="concept-h">
+  <h2 id="concept-h"><span class="num">3</span>The concept: a weekly capture report</h2>
+  <p>A one-page report for the owner every Monday, built only from data the restaurant already produces: its Google Business Profile and its till, plus reservations where the venue keeps them reliably. Google's figures arrive up to five days late, so each report covers the last week with complete data <a class="src" href="#src-1">[1]</a><a class="src" href="#src-5">[5]</a>. Working name: Capture.</p>
+  <ul class="points">
+    <li>It follows one outcome: <strong>weekly tables</strong>, counted from till tickets.</li>
+    <li>It explains that outcome with three signals. <strong>Market</strong>: searches for the category in the region, from Google Trends, read monthly because low-volume searches show up as zero <a class="src" href="#src-6">[6]</a>. <strong>Visibility</strong>: profile impressions on Search and Maps. <strong>Conversion</strong>: a search-to-table index, tickets against profile actions, read as a four-week trend. It is an index, not a funnel rate, because walk-ins (26% of visits in the CoverManager data <a class="src" href="#src-2">[2]</a>) and regulars never touch Google.</li>
+    <li>It names the cause of a bad week. Fewer searches in the area is a market problem. The same searches but fewer impressions is a visibility problem. The same impressions but fewer tables is a conversion problem.</li>
+    <li>It recommends <strong>one action</strong> for the week, chosen from a fixed set mapped to each cause. An LLM only writes it in plain language, so it cannot invent advice the numbers don't support.</li>
+    <li>It asks <strong>nothing of the floor team</strong>. That is a design constraint, not a feature.</li>
+  </ul>
+  <div class="vp">
+    <p>For owners of independent restaurants who see revenue move but not why, Capture shows whether the market, their visibility or their conversion moved, and where diners are lost between Google and the table, using data they already have and no extra work for their team. Reservation tools start counting at the booking. Capture starts at the search.</p>
+  </div>
+  <h3>How the report earns action</h3>
+  <p>A diagnosis nobody acts on has no value, and my first proposal to an owner was a no. So the report is designed around how owners decide:</p>
+  <ul class="points">
+    <li><strong>Value first.</strong> Every owner starts with a free leak check on their last 12 months. It gives something before asking for anything, and it is how Capture gets access to the data.</li>
+    <li><strong>The owner picks the action.</strong> The report suggests one, the owner confirms it, and the next Monday opens with what happened. The loop closes on their own decision.</li>
+    <li><strong>Neighbours as reference.</strong> Where data allows, it compares visibility with similar restaurants nearby, the comparison owners already make in their heads.</li>
+    <li><strong>Losses in tables and euros.</strong> Owners think in cash flow, as the quote above shows. "12 tables below your usual week, about 500 € in sales" moves an owner; "index down 4%" does not.</li>
+    <li><strong>Their own numbers only.</strong> Every figure comes from Google or their till. No invented urgency, no countdowns.</li>
+    <li><strong>Through people they trust.</strong> A quarter of Barcelona's establishments belong to a trade or neighbourhood association, and a third of restaurants do <a class="src" href="#src-7">[7]</a>. Introductions through them reach owners where trust already exists.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="service-h">
+  <h2 id="service-h"><span class="num">4</span>The service, end to end</h2>
+  <p>Most tools are designed for the bad week. This one is designed around the normal week. The owner's need, in their own words, is to understand a cash flow that never stops, and a report that only speaks when something breaks teaches people to ignore it. So most Mondays Capture simply makes the week legible in tables and euros. It diagnoses only when a week falls outside the usual range.</p>
+  <p>The blueprint also separates two people the fieldwork showed are different: the owner decides and the manager acts. Floor staff never appear, by design.</p>
+  <div class="scroll">
+  <table class="bp">
+    <caption>Service blueprint. The dashed line is the line of visibility: it separates what people see from what runs behind it.</caption>
+    <thead><tr><th scope="col">Moment</th><th scope="col">The owner decides</th><th scope="col">The manager acts</th><th scope="col" class="back">Capture, behind the scenes</th><th scope="col">The partner</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Leak check<span>Before buying</span></th><td data-label="The owner decides">Gets a free report on the last 12 months: where tables and cash went.</td><td data-label="The manager acts">Not involved yet.</td><td data-label="Capture, behind the scenes" class="back">Reads 12 months of Google and till history and finds the biggest leak.</td><td data-label="The partner">Offers the check to its merchants as a reason to talk.</td></tr>
+      <tr><th scope="row">Connect<span>Once</span></th><td data-label="The owner decides">Approves access to Google and the till, once.</td><td data-label="The manager acts">Nothing to do.</td><td data-label="Capture, behind the scenes" class="back">Requests Google profile access, maps till categories and sets the usual range for each weekday and season.</td><td data-label="The partner">Already holds the till data, so there is one step less.</td></tr>
+      <tr class="core"><th scope="row">The normal week<span>Most Mondays. The core of the service.</span></th><td data-label="The owner decides">Reads one line: tables and euros inside the usual range, and what held them there.</td><td data-label="The manager acts">Nothing to do.</td><td data-label="Capture, behind the scenes" class="back">Updates the usual range, checks the three signals and stays quiet.</td><td data-label="The partner">Sees steady use, not alerts.</td></tr>
+      <tr><th scope="row">The bad week<span>When a week falls outside the range</span></th><td data-label="The owner decides">Sees tables and euros below range, the cause, and confirms one action.</td><td data-label="The manager acts">Receives the confirmed action with a short how-to. Done in under an hour.</td><td data-label="Capture, behind the scenes" class="back">Names the cause from the three signals and picks the action from the fixed set.</td><td data-label="The partner">Nothing yet.</td></tr>
+      <tr><th scope="row">The no<span>When the action is skipped</span></th><td data-label="The owner decides">Skips or rejects the action.</td><td data-label="The manager acts">Nothing reaches them.</td><td data-label="Capture, behind the scenes" class="back">Next week offers a smaller action. After three skips, asks the owner one question: why.</td><td data-label="The partner">After three skips, its account manager calls.</td></tr>
+      <tr><th scope="row">Every quarter<span>Renewal</span></th><td data-label="The owner decides">Sees the quarter in cash: weeks in range, actions taken, tables recovered.</td><td data-label="The manager acts">Sees which actions worked.</td><td data-label="Capture, behind the scenes" class="back">Compares weeks with and without actions.</td><td data-label="The partner">Gets retention evidence across its merchants.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="with-margin" aria-labelledby="case-h">
+  <h2 id="case-h"><span class="num">5</span>The business case</h2>
+  <h3>Market</h3>
+  <aside class="mn"><span class="fig">≈ 13,000</span>independent restaurants in Catalonia, of 16,301 in total <a class="src" href="#src-8">[8]</a>.</aside>
+  <p>Catalonia has 16,301 restaurants, plus 23,781 bars <a class="src" href="#src-8">[8]</a>. Chains hold close to 31% of restaurant sales in Spain, but with about 16,300 branded units against 83,714 restaurant premises they are at most one venue in five <a class="src" href="#src-9">[9]</a>. In Barcelona, only 5.1% of establishments are franchises <a class="src" href="#src-7">[7]</a>.</p>
+  <p>Taking 80% as independent gives a serviceable market of about 13,000 restaurants in Catalonia, 9,000 of them in the province of Barcelona. The figure is conservative: almost half of the establishments surveyed in Barcelona are bar-restaurants <a class="src" href="#src-7">[7]</a>, many with table service but counted as bars. I found no public figure for how many keep an active Google profile, so that is a filter to check in the interviews.</p>
+  <h3>Price, designed before the product</h3>
+  <p>Price is set in discovery, not after the build. In the ten interviews, after the problem questions and never before, each owner says at what monthly price Capture would seem so cheap they'd doubt it, a good deal, expensive, and too expensive. The answers give a price range per segment. 59 € is the starting hypothesis, not the decision. Owners also rank features: the ones that drive willingness to pay go into the paid package, and the ones nobody would pay for are dropped, not bundled.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Package</th><th>What's in it</th><th class="num">Price to test</th></tr></thead>
+    <tbody>
+      <tr><td>Leak check</td><td>One-off report on the last 12 months: the three signals and the biggest leak</td><td class="num">Free</td></tr>
+      <tr><td>Weekly</td><td>Monday report, the cause, one action and the result of last week's action</td><td class="num">59 € a month per site</td></tr>
+      <tr><td>Group</td><td>Weekly for every site, plus a comparison across sites</td><td class="num">Per site, with a volume discount</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>One rule runs across every package: nothing that needs staff input. It is the feature most likely to turn a yes into a no.</p>
+  <h3>Who else is close</h3>
+  <p>Malou manages local search and reviews for more than 2,000 restaurants. Toast connects the Google profile, but for reviews only. Spanish tills such as Qamarero and Last.app report sales in detail, without profile metrics next to them <a class="src" href="#src-10">[10]</a>. I found no one publicly joining the Google funnel with till data. That is either a gap or a sign that it is hard, and the first partner conversation should find out which.</p>
+
+  <h3>The stronger model: embedded in a partner</h3>
+  <aside class="mn"><span class="fig">50,000+</span>restaurants in TheFork, which American Express agreed to buy in 2026 <a class="src" href="#src-4">[4]</a>.</aside>
+  <p>Whoever already holds the transaction data (a payments, point-of-sale or reservation provider) can offer Capture to its merchants. It also solves the hardest technical problem: one integration instead of dozens of tills. For the partner, the value is merchant retention, not subscription revenue.</p>
+  <p>The direction of the market supports it. In June 2026, American Express agreed to buy TheFork, a network of more than 50,000 restaurants, for about 700 million dollars <a class="src" href="#src-4">[4]</a>: a payments company buying its way into how diners find restaurants. There are three ways to structure a deal.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Model</th><th>Who pays</th><th>When it makes sense</th></tr></thead>
+    <tbody>
+      <tr><td>Free layer</td><td>The partner, for retention</td><td>Cost to serve is very low and the report is fully automated</td></tr>
+      <tr><td>Premium add-on</td><td>The merchant, with revenue share</td><td>Only part of the base values it</td></tr>
+      <tr><td>White-label licence</td><td>The partner, as a fixed fee</td><td>The partner wants the product without building it</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>What has to be true for a free layer: the churn it prevents must pay for serving every merchant. Spanish till plans run from 50 € to 175 € a month per location, with analytics included <a class="src" href="#src-11">[11]</a>. With an illustrative partner revenue of 70 € a month per merchant (840 € a year), on a one-year view:</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Cost to serve per merchant</th><th class="num">Annual churn reduction needed to break even</th></tr></thead>
+    <tbody>
+      <tr><td>1 € a month</td><td class="num">1.4 points</td></tr>
+      <tr><td>3 € a month</td><td class="num">4.3 points</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>The bar is demanding unless serving costs are close to zero. That is why the premium add-on is the likelier first deal, and the free layer a later step.</p>
+
+  <h3>Standalone, as a floor</h3>
+  <aside class="mn"><span class="fig">7.8%</span>of Spanish companies closed in 2023, a floor for any churn estimate <a class="src" href="#src-13">[13]</a>.</aside>
+  <p>Reservation software in Spain lists from free tiers up to 299 € a month <a class="src" href="#src-12">[12]</a>, and tills give analytics away. Sold directly at the 59 € hypothesis, Capture would sit low in that range. At 1%, 3% and 5% of the serviceable market (130, 390 and 650 restaurants), that is about 92,000, 277,000 and 462,000 € a year. Unit economics decide whether it survives. With an assumed 80% gross margin:</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Monthly churn</th><th class="num">Lifetime value</th><th class="num">Max. acquisition cost for LTV/CAC of 3</th></tr></thead>
+    <tbody>
+      <tr><td>2%</td><td class="num">≈ 2,360 €</td><td class="num">≈ 790 €</td></tr>
+      <tr><td>4%</td><td class="num">≈ 1,180 €</td><td class="num">≈ 390 €</td></tr>
+      <tr><td>6%</td><td class="num">≈ 790 €</td><td class="num">≈ 260 €</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>I found no public churn benchmark for restaurant software. Closures alone set a floor: in Spain, 7.8% of companies closed in 2023, and only 42% of those founded in 2018 were still active five years later, across all sectors <a class="src" href="#src-13">[13]</a>.</p>
+
+  <h3>What the numbers say</h3>
+  <p>Standalone only works with low churn and cheap acquisition, which is rare when selling to independent restaurants one by one. Embedded turns the same product into a retention tool for a company that already has the merchants and the data. Every figure above is a hypothesis to test, and the partner case is the first one I would take to a client.</p>
+</section>
+
+<section aria-labelledby="risks-h">
+  <h2 id="risks-h"><span class="num">6</span>Four risks to retire before building</h2>
+  <div class="risks">
+    <div class="risk">
+      <h3>Value: owners act on a weekly diagnosis</h3>
+      <dl>
+        <dt>Why it could be false</dt><dd>My first proposal to an owner was a clear no. Insight is not adoption.</dd>
+        <dt>Test</dt><dd>Concierge pilot: 3 restaurants, 4 weeks, report built by hand.</dd>
+        <dt>Stop if</dt><dd class="kill">Fewer than 2 of 3 act on at least one recommendation.</dd>
+      </dl>
+    </div>
+    <div class="risk">
+      <h3>Usability: owners understand it in two minutes</h3>
+      <dl>
+        <dt>Why it could be false</dt><dd>Owners read it on a phone, between services. A dense report won't survive that.</dd>
+        <dt>Test</dt><dd>5 owners read a mock report on their phone, with no explanation, at the end of their interview.</dd>
+        <dt>Stop if</dt><dd class="kill">Fewer than 4 of 5 can say the cause and the action within two minutes.</dd>
+      </dl>
+    </div>
+    <div class="risk">
+      <h3>Feasibility: Google and till data are enough</h3>
+      <dl>
+        <dt>Why it could be false</dt><dd>Profile data is aggregated, arrives up to five days late and needs API access approved by Google. Walk-ins aren't attributed.</dd>
+        <dt>Test</dt><dd>Each pilot venue's last 12 months of profile data against its ticket counts, pulled in week 3.</dd>
+        <dt>Stop if</dt><dd class="kill">No stable relationship in at least 2 venues.</dd>
+      </dl>
+    </div>
+    <div class="risk">
+      <h3>Viability: someone pays for it</h3>
+      <dl>
+        <dt>Why it could be false</dt><dd>Tills already include analytics at no extra cost, so owners may see no reason to pay again <a class="src" href="#src-11">[11]</a>.</dd>
+        <dt>Test</dt><dd>Price questions in the 10 owner interviews, plus one conversation with a till or payments provider.</dd>
+        <dt>Stop if</dt><dd class="kill">Fewer than 3 of 10 owners place 59 € inside their acceptable range, and no partner sees retention or upsell value above its cost to serve.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="roadmap-h">
+  <h2 id="roadmap-h"><span class="num">7</span>Roadmap: 12 weeks to a decision</h2>
+  <ol class="roadmap">
+    <li><div class="when">Weeks 1 to 2<span>Discover</span></div><p>10 owner interviews in Barcelona: the journey, the leaks, whether they keep an active Google profile, a usability test of the mock report and the price range. One conversation with a till or payments provider to test the partner case. <span class="metric">Output: validated journey, price range per segment, usability result and partner interest</span></p></li>
+    <li><div class="when">Weeks 3 to 6<span>Concierge pilot</span></div><p>Start with a backfill: each venue's last 12 months of profile data against its tickets. Then 3 restaurants receive a hand-built weekly report from their own exports, with the action chosen from the fixed set. <span class="metric">Metric: recommendations acted on</span></p></li>
+    <li><div class="when">Weeks 7 to 12<span>Build the MVP</span></div><p>Automate the Google profile and till data pipeline, keep the report format that worked, and track weekly use. <span class="metric">Metric: change in weekly tables, explained by the three signals</span></p></li>
+    <li><div class="when">Week 12<span>Decide</span></div><p>Go embedded with a partner, go standalone, or stop, based on the four stop criteria above.</p></li>
+    <li><div class="when">After week 12<span>If the gates hold</span></div><p>A pilot with one partner in months 4 to 6, launch to its merchant base in months 7 to 12, then a second partner. <span class="metric">Metric: share of merchants with weekly tables back in range</span></p></li>
+  </ol>
+  <h3>How the interviews run</h3>
+  <ul class="points">
+    <li>Start with the last time revenue dropped: what they noticed, what they opened, what they did. Past behaviour, not opinions about the future.</li>
+    <li>Show nothing until the end. Then hand over the mock report and watch them read it.</li>
+    <li>Ask about price last, so the pitch doesn't anchor the answer.</li>
+    <li>Two people per interview: one asks, one takes notes. Notes are shared the same day.</li>
+  </ul>
+  <h3>How each gate is decided</h3>
+  <p>Each gate is a 30-minute decision meeting: a one-page pre-read sent the day before, one person who makes the call, and stop criteria agreed before the evidence comes in.</p>
+  <p style="margin-top:1.25rem">North-star metric: weekly tables. Diagnostic signals: area searches, profile impressions and the search-to-table index. Guardrail: zero added tasks for floor staff.</p>
+</section>
+
+<section aria-labelledby="limits-h">
+  <h2 id="limits-h"><span class="num">8</span>What this case can and can't claim</h2>
+  <ul class="points">
+    <li><strong>One restaurant.</strong> The diagnosis comes from a single anonymised venue. It shows the problem exists, not how common it is.</li>
+    <li><strong>Two time windows.</strong> Till data covers six months against the same months in three years. Google data covers twelve months, the most it allows.</li>
+    <li><strong>No guest counts.</strong> Spend per diner is unknown, so the 7% rise is per ticket.</li>
+    <li><strong>Visibility or market.</strong> The fieldwork points to visibility. Area search data is the check that would rule out a shrinking market.</li>
+    <li><strong>Public sources only.</strong> Market figures come from published data. Paid sector reports were not consulted.</li>
+    <li><strong>Estimates.</strong> The 80% independent share, the partner revenue, the cost to serve and the churn levels are assumptions, stated as such and tested in the roadmap.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="built-h">
+  <h2 id="built-h"><span class="num">9</span>How I built this</h2>
+  <p>This case is also a test of how I work with AI. It sped up most of the process; auditing what it produced did not get faster. Many of the structures were its proposals, so deciding meant choosing among them and rejecting some.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Step</th><th>What AI did</th><th>What I decided</th></tr></thead>
+    <tbody>
+      <tr><td>Research</td><td>Ran the searches and read primary sources: INE, Mercasa, Google's API documentation, company results</td><td>Which figures to trust, by the quality of the source, not by whether they helped. Both figures dropped weakened the case: a widely quoted 90% with no published study, and a "42,000 restaurants" count that was counting bars, which cut the base scenario from 361,000 to 277,000 € a year.</td></tr>
+      <tr><td>Structure</td><td>Drafted sections, tables and calculations</td><td>The argument: the revenue tree, the four risks, the stop criteria and the recommendation</td></tr>
+      <tr><td>Critique</td><td>Played the reviewers: an executive, a designer, a developer and an illustrator</td><td>Which objections held. The reviews found that the first north-star missed the main leak, and that spend per ticket can't be read as spend per diner.</td></tr>
+      <tr><td>Build</td><td>Wrote and tested this page: contrast, a 360-pixel phone, print</td><td>The visual direction, what folds on mobile and what gets cut</td></tr>
+      <tr><td>Fieldwork</td><td>Nothing</td><td>Four months inside the restaurant, the data, the conversations and the quote. It is the least auditable part of the case, which is why the ten interviews exist: to test it against other owners.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>Where this method can fail</h3>
+  <ul class="points">
+    <li><strong>Without the fieldwork, this would be desk research.</strong> The three insights that shape the case (the lost guest counts, the veto on floor tasks and the owner's words on cash flow) are in no database.</li>
+    <li><strong>Synthetic reviewers share one model's blind spots.</strong> Four simulated roles are closer to one opinion than to four. The next step is the same review with a real owner, a product designer and an engineer, before building anything.</li>
+    <li><strong>The research only reached public, indexed sources.</strong> Paid reports were out of reach, so the market figures rest on what is published.</li>
+  </ul>
+  <h3>How I work</h3>
+  <p>I turn messy operating data into decisions people can act on: the problem, the evidence, the case and the gates that decide it. In a product team, designers own the experience and engineers the pipeline, and we decide together at each gate. Working directly with a business, I bring the same structure and keep the stop criteria agreed before the evidence comes in.</p>
+</section>
+
+<div class="end">
+  <p class="big">Let's talk.</p>
+  <p class="end-sub">If your business can't see why its numbers move, I'd like to hear about it.</p>
+  <ul>
+    <li><a href="mailto:msepulvedac1@gmail.com">msepulvedac1@gmail.com</a></li>
+    <li><a href="tel:+34624486698">+34 624 486 698</a></li>
+    <li><a href="https://www.linkedin.com/in/sepulveda-michael">LinkedIn</a></li>
+    <li><a href="../">Full profile</a></li>
+    <li><a href="#title">Back to the summary</a></li>
+  </ul>
+</div>
+
+</main>
+
+<footer class="sources">
+  <h2>Sources</h2>
+  <ol>
+    <li id="src-1">DashThis, Google Business Profile limitations (18 months of history, up to 5 days of latency); confirmed by Yext on 18 months. <a href="https://help.dashthis.com/google-my-business-notes/limitations">help.dashthis.com</a></li>
+    <li id="src-2">CoverManager, "Las Mesas Hablan" H1 2025, reported by Vinetur, 24 September 2025. Data from the company's own client base, so biased towards restaurants that take bookings. <a href="https://www.vinetur.com/2025092491571/la-reserva-previa-se-consolida-como-la-forma-habitual-de-acudir-a-restaurantes-en-espana.html">vinetur.com</a></li>
+    <li id="src-3">TheFork, first study on restaurant entrepreneurship in Spain, reported by El Debate, 25 September 2024. Sample size not published. <a href="https://www.eldebate.com/economia/20240925/dos-motivos-bares-restaurantes-acaban-cerrando-espana_230380.html">eldebate.com</a></li>
+    <li id="src-4">Forbes España, "American Express compra TheFork", June 2026. The article gives 700 million dollars in the body and 600 million in the headline. <a href="https://forbes.es/ultima-hora/956114/american-express-compra-thefork-por-600-millones-para-reforzar-su-negocio-de-restauracion-en-europa/">forbes.es</a></li>
+    <li id="src-5">Google, Business Profile Performance API, DailyMetric reference and Business Profile Help on performance metrics. <a href="https://developers.google.com/my-business/reference/performance/rest/v1/DailyMetric">developers.google.com</a></li>
+    <li id="src-6">Google News Initiative, "Google Trends: understanding the data". <a href="https://newsinitiative.withgoogle.com/resources/lessons/google-trends-understanding-the-data/">newsinitiative.withgoogle.com</a></li>
+    <li id="src-7">Ajuntament de Barcelona, survey of the restaurant sector 2024 (1,000 establishments). <a href="https://ajuntament.barcelona.cat/comerc/sites/default/files/2025-09/r24053_Sector_Restauracio_Informe_v1_0_1.pdf">ajuntament.barcelona.cat</a></li>
+    <li id="src-8">Mercasa, "Hostelería y restauración en Cataluña", 2026, with Alimarket and INE 2025 data. <a href="https://www.mercasa.es/wp-content/uploads/2026/02/cataluna.pdf">mercasa.es</a></li>
+    <li id="src-9">Mercasa, "Alimentación en España 2025: hostelería y restauración", citing INE DIRCE and Alimarket. <a href="https://www.mercasa.es/wp-content/uploads/2026/01/AEE_2025_hosteleria_restauracion.pdf">mercasa.es</a></li>
+    <li id="src-10">Competitor scan, October 2026: Malou pricing page, Toast support on Google Business Profile, Qamarero analytics. <a href="https://support.toasttab.com/en/article/Connect-a-Google-Business-Profile-to-Toast">support.toasttab.com</a></li>
+    <li id="src-11">Last.app, pricing, checked October 2026. <a href="https://www.last.app/en/pricing">last.app</a></li>
+    <li id="src-12">Qamarero, "Mejores software de reservas para restaurantes 2026", updated 29 October 2026. <a href="https://qamarero.com/blog/mejores-software-reservas-restaurantes/">qamarero.com</a></li>
+    <li id="src-13">INE, Demografía Armonizada de Empresas 2023, published 12 November 2025. <a href="https://ine.es/dyngs/Prensa/es/DAE2023.htm">ine.es</a></li>
+  </ol>
+</footer>
+</div>
+</body>
+</html>
